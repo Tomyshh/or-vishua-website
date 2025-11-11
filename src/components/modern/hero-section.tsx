@@ -58,7 +58,7 @@ export function HeroSection() {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-40 md:pt-40 pb-100"
     >
       {/* Animated Background Blobs */}
       <div className="absolute inset-0 overflow-hidden">

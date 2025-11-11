@@ -73,38 +73,38 @@ export function Footer() {
                 href="https://maps.google.com/?q=רחוב+חניתה+96+חיפה"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-start gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="flex items-start gap-3 text-sm text-muted-foreground hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300 hover:translate-x-1 group"
               >
-                <MapPin className="w-4 h-4 mt-0.5" />
+                <MapPin className="w-4 h-4 mt-0.5 group-hover:scale-110 transition-transform" />
                 <span>רחוב חניתה 96, חיפה</span>
               </a>
               <a 
                 href="tel:04-8121048"
-                className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="flex items-center gap-3 text-sm text-muted-foreground hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300 hover:translate-x-1 group"
               >
-                <Phone className="w-4 h-4" />
+                <Phone className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 <span dir="ltr">04-8121048</span>
               </a>
               <a 
                 href="mailto:info@orvishua.org.il"
-                className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="flex items-center gap-3 text-sm text-muted-foreground hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300 hover:translate-x-1 group"
               >
-                <Mail className="w-4 h-4" />
+                <Mail className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 <span dir="ltr">info@orvishua.org.il</span>
               </a>
             </div>
 
             {/* Social Links */}
             <div className="flex gap-2 mt-6">
-              <Button variant="ghost" size="icon" className="hover:text-blue-600">
+              <Button variant="ghost" size="icon" className="hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-950 hover:scale-110 transition-all duration-300">
                 <Facebook className="w-5 h-5" />
                 <span className="sr-only">Facebook</span>
               </Button>
-              <Button variant="ghost" size="icon" className="hover:text-red-600">
+              <Button variant="ghost" size="icon" className="hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950 hover:scale-110 transition-all duration-300">
                 <Youtube className="w-5 h-5" />
                 <span className="sr-only">YouTube</span>
               </Button>
-              <Button variant="ghost" size="icon" className="hover:text-pink-600">
+              <Button variant="ghost" size="icon" className="hover:text-pink-600 hover:bg-pink-50 dark:hover:bg-pink-950 hover:scale-110 transition-all duration-300">
                 <Instagram className="w-5 h-5" />
                 <span className="sr-only">Instagram</span>
               </Button>
@@ -120,10 +120,10 @@ export function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1 group"
+                      className="text-sm text-muted-foreground hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300 flex items-center gap-1 group hover:translate-x-1"
                     >
                       <span>{link.name}</span>
-                      <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:rotate-12" />
                     </Link>
                   </li>
                 ))}
@@ -161,13 +161,13 @@ export function Footer() {
             <span>© 2024 ישיבת אור וישועה. כל הזכויות שמורות.</span>
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/privacy" className="hover:text-foreground transition-colors">
+            <Link href="/privacy" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300 hover:underline hover:underline-offset-4">
               מדיניות פרטיות
             </Link>
-            <Link href="/terms" className="hover:text-foreground transition-colors">
+            <Link href="/terms" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300 hover:underline hover:underline-offset-4">
               תנאי שימוש
             </Link>
-            <Link href="/accessibility" className="hover:text-foreground transition-colors">
+            <Link href="/accessibility" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300 hover:underline hover:underline-offset-4">
               נגישות
             </Link>
           </div>

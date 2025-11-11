@@ -98,25 +98,28 @@ export function FeaturesSection() {
               transition={{ duration: 0.5, delay: feature.delay }}
             >
               <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.02}>
-                <div className="group h-full p-8 rounded-3xl glass hover:glass-dark transition-all duration-500 hover:shadow-2xl">
+                <div className="group h-full p-8 rounded-3xl glass transition-all duration-500 hover:shadow-2xl relative overflow-hidden hover:border-cyan-300">
+                  {/* Gradient Overlay on Hover */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl`} />
+                  
                   {/* Icon */}
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} p-4 mb-6 group-hover:scale-110 transition-transform duration-500`}>
+                  <div className={`relative z-10 w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} p-4 mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-xl`}>
                     <feature.icon className="w-full h-full text-white" />
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:gradient-text-modern transition-all duration-300">
+                  <h3 className="relative z-10 text-2xl font-bold text-gray-900 mb-3 group-hover:gradient-text-modern transition-all duration-300">
                     {feature.title}
                   </h3>
                   
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="relative z-10 text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
                     {feature.description}
                   </p>
 
                   {/* Hover Arrow */}
-                  <div className="mt-6 flex items-center gap-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="relative z-10 mt-6 flex items-center gap-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-2">
                     <span className="text-sm font-medium">קרא עוד</span>
-                    <svg className="w-4 h-4 transform rtl:rotate-180 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-4 h-4 transform rtl:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </div>

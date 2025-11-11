@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Heebo, Rubik } from "next/font/google"
 import "./globals.css"
 import { ModernNavbar } from "@/components/modern/modern-navbar"
+import { Footer } from "@/components/footer/footer"
 
 const heebo = Heebo({
   subsets: ["hebrew", "latin"],
@@ -41,6 +42,7 @@ export default function RootLayout({
       >
         <ModernNavbar />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   )
