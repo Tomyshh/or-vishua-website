@@ -1,0 +1,166 @@
+"use client"
+
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { BookOpen, Users, Heart, GraduationCap, Globe, Sparkles } from 'lucide-react'
+import Tilt from 'react-parallax-tilt'
+
+const features = [
+  {
+    icon: BookOpen,
+    title: "לימוד תורני עמוק",
+    description: "תכנית לימודים מקיפה המשלבת גמרא, הלכה, מחשבת ישראל ופילוסופיה יהודית",
+    color: "from-cyan-500 to-blue-500",
+    delay: 0,
+  },
+  {
+    icon: Users,
+    title: "קהילה חמה ותומכת",
+    description: "סביבה משפחתית המעודדת צמיחה אישית ורוחנית בתוך קהילה תוססת ומגוונת",
+    color: "from-teal-500 to-green-500",
+    delay: 0.1,
+  },
+  {
+    icon: Heart,
+    title: "ליווי אישי",
+    description: "כל תלמיד זוכה לליווי אישי ממרצי הישיבה להתפתחות מיטבית ומותאמת אישית",
+    color: "from-amber-500 to-orange-500",
+    delay: 0.2,
+  },
+  {
+    icon: GraduationCap,
+    title: "הכנה מקצועית",
+    description: "הכשרה מקצועית לרבנות, חינוך והוראה לצד פיתוח כישורי חיים ומנהיגות",
+    color: "from-purple-500 to-pink-500",
+    delay: 0.3,
+  },
+  {
+    icon: Globe,
+    title: "חיבור לעולם המודרני",
+    description: "גישור בין עולם התורה לחיים המודרניים בגישה פתוחה, מכבדת וחכמה",
+    color: "from-indigo-500 to-purple-500",
+    delay: 0.4,
+  },
+  {
+    icon: Sparkles,
+    title: "מצוינות אקדמית",
+    description: "שאיפה למצוינות בלימוד התורה תוך שמירה על רמה אקדמית גבוהה ומחויבות",
+    color: "from-rose-500 to-red-500",
+    delay: 0.5,
+  },
+]
+
+export function FeaturesSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+
+  return (
+    <section ref={ref} className="py-24 md:py-32 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgb(0 188 212) 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }} />
+      </div>
+
+      <div className="container relative z-10">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 text-cyan-700 text-sm font-medium mb-6">
+            <Sparkles className="w-4 h-4" />
+            <span>מה מייחד אותנו</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <span className="block text-gray-900">הערכים</span>
+            <span className="block gradient-text-modern">המנחים אותנו</span>
+          </h2>
+          
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            בישיבת אור וישועה אנו מאמינים בחינוך תורני המשלב מצוינות אקדמית,
+            צמיחה רוחנית ומעורבות חברתית משמעותית
+          </p>
+        </motion.div>
+
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map((feature, index) => (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: feature.delay }}
+            >
+              <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.02}>
+                <div className="group h-full p-8 rounded-3xl glass hover:glass-dark transition-all duration-500 hover:shadow-2xl">
+                  {/* Icon */}
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} p-4 mb-6 group-hover:scale-110 transition-transform duration-500`}>
+                    <feature.icon className="w-full h-full text-white" />
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:gradient-text-modern transition-all duration-300">
+                    {feature.title}
+                  </h3>
+                  
+                  <p className="text-gray-600 leading-relaxed">
+                    {feature.description}
+                  </p>
+
+                  {/* Hover Arrow */}
+                  <div className="mt-6 flex items-center gap-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-sm font-medium">קרא עוד</span>
+                    <svg className="w-4 h-4 transform rtl:rotate-180 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </div>
+              </Tilt>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* CTA Card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-16"
+        >
+          <div className="relative rounded-3xl p-12 overflow-hidden">
+            {/* Animated Gradient Background */}
+            <div className="absolute inset-0 animated-gradient opacity-90" />
+            
+            {/* Glass Overlay */}
+            <div className="absolute inset-0 glass" />
+            
+            {/* Content */}
+            <div className="relative z-10 text-center text-white">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                <Sparkles className="w-8 h-8" />
+              </div>
+              
+              <h3 className="text-3xl md:text-4xl font-bold mb-4">
+                מוכנים להצטרף למשפחה שלנו?
+              </h3>
+              
+              <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+                הצטרף למסורת של למידה, צמיחה והתפתחות אישית בישיבת אור וישועה
+              </p>
+              
+              <button className="px-8 py-4 rounded-2xl bg-white text-cyan-600 font-semibold text-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-xl">
+                צור קשר עוד היום
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
