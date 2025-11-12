@@ -52,17 +52,17 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden pt-20 md:pt-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-purple-900/20" />
         
-        <div className="container relative z-10 text-center">
+        <div className="container relative z-10 text-center px-4">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium mb-6"
+            className="inline-flex items-center gap-2 px-3 md:px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs sm:text-sm font-medium mb-4 md:mb-6"
           >
-            <Building className="w-4 h-4" />
+            <Building className="w-3 h-3 md:w-4 md:h-4" />
             <span>אודות הישיבה</span>
           </motion.div>
           
@@ -70,7 +70,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6"
           >
             <span className="block">מסורת של</span>
             <span className="block gradient-text">למידה ומצוינות</span>
@@ -80,7 +80,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4"
           >
             ישיבת אור וישועה נוסדה בשנת 1973 והפכה לאחד ממרכזי התורה המובילים בצפון הארץ,
             תוך שילוב ייחודי של לימוד תורני עמוק עם פתיחות לעולם המודרני
@@ -90,24 +90,24 @@ export default function AboutPage() {
 
       {/* Vision & Mission */}
       <section className="section-padding">
-        <div className="container">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container px-4">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold mb-6">החזון שלנו</h2>
-              <p className="text-muted-foreground mb-6">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-6">החזון שלנו</h2>
+              <p className="text-sm sm:text-base text-muted-foreground mb-4 md:mb-6 leading-relaxed">
                 להיות מרכז תורני מוביל המכשיר תלמידי חכמים בעלי ידע רחב ועומק בתורה,
                 המסוגלים להתמודד עם אתגרי הדור ולהנהיג את הקהילה היהודית בדרך של תורה ודרך ארץ.
               </p>
-              <p className="text-muted-foreground mb-6">
+              <p className="text-sm sm:text-base text-muted-foreground mb-6 leading-relaxed">
                 אנו שואפים ליצור סביבת לימוד המעודדת חשיבה ביקורתית, יצירתיות ומצוינות אקדמית,
                 תוך שמירה על ערכי היהדות המסורתיים והתאמתם לחיים בעידן המודרני.
               </p>
-              <Button variant="gradient" asChild>
+              <Button variant="gradient" asChild className="w-full sm:w-auto">
                 <Link href="/contact">
                   <span>בואו להכיר אותנו</span>
                   <ArrowLeft className="w-4 h-4 mr-2 rtl:rotate-180" />
@@ -122,7 +122,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative h-[250px] sm:h-[300px] md:h-[400px] rounded-xl md:rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&h=600&fit=crop"
                   alt="בית המדרש"
@@ -137,21 +137,21 @@ export default function AboutPage() {
 
       {/* Values */}
       <section className="section-padding bg-gray-50 dark:bg-gray-900">
-        <div className="container">
+        <div className="container px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">הערכים המנחים אותנו</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4">הערכים המנחים אותנו</h2>
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
               הערכים שלנו מעצבים את דרך הלימוד והחיים בישיבה
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {values.map((value, index) => (
               <motion.div
                 key={value.title}
@@ -161,12 +161,12 @@ export default function AboutPage() {
                 viewport={{ once: true }}
               >
                 <Card className="h-full text-center hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                      <value.icon className="w-8 h-8 text-primary" />
+                  <CardContent className="p-5 md:p-6">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                      <value.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
                     </div>
-                    <h3 className="text-lg font-semibold mb-2">{value.title}</h3>
-                    <p className="text-sm text-muted-foreground">{value.description}</p>
+                    <h3 className="text-base sm:text-lg font-semibold mb-1.5 md:mb-2">{value.title}</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{value.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -222,8 +222,8 @@ export default function AboutPage() {
 
       {/* Stats */}
       <section className="section-padding bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-        <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="container px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-center">
             {[
               { number: "500+", label: "תלמידים" },
               { number: "50+", label: "שנות פעילות" },
@@ -237,10 +237,10 @@ export default function AboutPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
+                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-1 md:mb-2">
                   {stat.number}
                 </div>
-                <div className="text-white/80">{stat.label}</div>
+                <div className="text-xs sm:text-sm md:text-base text-white/80">{stat.label}</div>
               </motion.div>
             ))}
           </div>

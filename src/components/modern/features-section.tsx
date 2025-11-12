@@ -62,7 +62,7 @@ export function FeaturesSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section ref={ref} className="py-24 md:py-32 relative overflow-hidden">
+    <section ref={ref} className="py-16 md:py-24 lg:py-32 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -71,32 +71,32 @@ export function FeaturesSection() {
         }} />
       </div>
 
-      <div className="container relative z-10">
+      <div className="container relative z-10 px-4">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 text-cyan-700 text-sm font-medium mb-6">
-            <Sparkles className="w-4 h-4" />
+          <div className="inline-flex items-center gap-2 px-3 md:px-4 py-2 rounded-full bg-cyan-50 text-cyan-700 text-xs sm:text-sm font-medium mb-4 md:mb-6">
+            <Sparkles className="w-3 h-3 md:w-4 md:h-4" />
             <span>מה מייחד אותנו</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
             <span className="block text-gray-900">הערכים</span>
             <span className="block gradient-text-modern">המנחים אותנו</span>
           </h2>
           
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
             בישיבת אור וישועה אנו מאמינים בחינוך תורני המשלב מצוינות אקדמית,
             צמיחה רוחנית ומעורבות חברתית משמעותית
           </p>
         </motion.div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -104,10 +104,10 @@ export function FeaturesSection() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: feature.delay }}
             >
-              <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.02}>
-                <div className="group h-full p-8 rounded-3xl glass transition-all duration-500 hover:shadow-2xl relative overflow-hidden hover:border-cyan-300">
+              <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.02} tiltEnable={typeof window !== 'undefined' && window.innerWidth >= 768}>
+                <div className="group h-full p-5 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl glass transition-all duration-500 hover:shadow-2xl relative overflow-hidden hover:border-cyan-300">
                   {/* Background Image avec overlay */}
-                  <div className="absolute inset-0 overflow-hidden rounded-3xl">
+                  <div className="absolute inset-0 overflow-hidden rounded-2xl md:rounded-3xl">
                     <Image
                       src={feature.image}
                       alt={feature.title}
@@ -116,27 +116,27 @@ export function FeaturesSection() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     {/* Overlay blanc avec opacité */}
-                    <div className="absolute inset-0 bg-white/85 group-hover:bg-white/75 transition-all duration-500" />
+                    <div className="absolute inset-0 bg-white/90 md:bg-white/85 group-hover:bg-white/75 transition-all duration-500" />
                     {/* Gradient overlay coloré */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-10 group-hover:opacity-20 transition-opacity duration-500`} />
                   </div>
                   
                   {/* Icon */}
-                  <div className={`relative z-10 w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} p-4 mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-xl`}>
+                  <div className={`relative z-10 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br ${feature.color} p-3 md:p-4 mb-4 md:mb-6 group-hover:scale-110 md:group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-xl`}>
                     <feature.icon className="w-full h-full text-white" />
                   </div>
 
                   {/* Content */}
-                  <h3 className="relative z-10 text-2xl font-bold text-gray-900 mb-3 group-hover:gradient-text-modern transition-all duration-300">
+                  <h3 className="relative z-10 text-xl sm:text-2xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:gradient-text-modern transition-all duration-300">
                     {feature.title}
                   </h3>
                   
-                  <p className="relative z-10 text-gray-700 leading-relaxed group-hover:text-gray-800 transition-colors duration-300 font-medium">
+                  <p className="relative z-10 text-sm sm:text-base text-gray-700 leading-relaxed group-hover:text-gray-800 transition-colors duration-300 font-medium">
                     {feature.description}
                   </p>
 
-                  {/* Hover Arrow */}
-                  <div className="relative z-10 mt-6 flex items-center gap-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-2">
+                  {/* Hover Arrow - Hidden on mobile */}
+                  <div className="relative z-10 mt-4 md:mt-6 hidden md:flex items-center gap-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-2">
                     <span className="text-sm font-medium">קרא עוד</span>
                     <svg className="w-4 h-4 transform rtl:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -153,9 +153,9 @@ export function FeaturesSection() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-16"
+          className="mt-12 md:mt-16"
         >
-          <div className="relative rounded-3xl p-12 overflow-hidden">
+          <div className="relative rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-12 overflow-hidden">
             {/* Animated Gradient Background */}
             <div className="absolute inset-0 animated-gradient opacity-90" />
             
@@ -164,19 +164,19 @@ export function FeaturesSection() {
             
             {/* Content */}
             <div className="relative z-10 text-center text-white">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                <Sparkles className="w-8 h-8" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-4 md:mb-6 rounded-xl md:rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
               </div>
               
-              <h3 className="text-3xl md:text-4xl font-bold mb-4">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 px-4">
                 מוכנים להצטרף למשפחה שלנו?
               </h3>
               
-              <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 opacity-90 max-w-2xl mx-auto px-4">
                 הצטרף למסורת של למידה, צמיחה והתפתחות אישית בישיבת אור וישועה
               </p>
               
-              <button className="px-8 py-4 rounded-2xl bg-white text-cyan-600 font-semibold text-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-xl">
+              <button className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl md:rounded-2xl bg-white text-cyan-600 font-semibold text-base sm:text-lg hover:bg-gray-100 active:scale-95 md:hover:scale-105 transition-all duration-300 shadow-xl">
                 צור קשר עוד היום
               </button>
             </div>

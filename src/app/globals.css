@@ -61,10 +61,16 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
+    /* Amélioration du rendu mobile */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   html {
     scroll-behavior: auto;
+    /* Optimisation mobile */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-text-size-adjust: 100%;
   }
   
   /* Smooth scrolling sera géré par Lenis */
@@ -96,9 +102,9 @@
     max-width: 1280px;
   }
   
-  /* Section padding standard */
+  /* Section padding standard - Optimisé mobile */
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-12 sm:py-16 md:py-20 lg:py-24;
   }
   
   /* Gradient moderne */
@@ -150,15 +156,17 @@
     @apply opacity-100;
   }
   
-  /* Effet 3D sur hover */
+  /* Effet 3D sur hover - Désactivé sur mobile pour performance */
   .hover-3d {
     @apply transition-all duration-300;
     transform-style: preserve-3d;
   }
   
-  .hover-3d:hover {
-    transform: translateY(-4px) rotateX(5deg);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  @media (min-width: 768px) {
+    .hover-3d:hover {
+      transform: translateY(-4px) rotateX(5deg);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
   }
   
   /* Animations de fond */
@@ -236,10 +244,17 @@
 /* Polices hébraïques modernes */
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
 
-/* Custom scrollbar moderne */
+/* Custom scrollbar moderne - Plus fin sur mobile */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 4px;
+  height: 4px;
+}
+
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
 }
 
 ::-webkit-scrollbar-track {

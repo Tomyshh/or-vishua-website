@@ -88,17 +88,17 @@ export default function StudiesPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden pt-20 md:pt-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-900 dark:to-cyan-900/20" />
         
-        <div className="container relative z-10 text-center">
+        <div className="container relative z-10 text-center px-4">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium mb-6"
+            className="inline-flex items-center gap-2 px-3 md:px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs sm:text-sm font-medium mb-4 md:mb-6"
           >
-            <BookOpen className="w-4 h-4" />
+            <BookOpen className="w-3 h-3 md:w-4 md:h-4" />
             <span>תכניות הלימודים שלנו</span>
           </motion.div>
           
@@ -106,7 +106,7 @@ export default function StudiesPage() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6"
           >
             <span className="block">לימוד תורני</span>
             <span className="block gradient-text">מצוינות ומחויבות</span>
@@ -116,7 +116,7 @@ export default function StudiesPage() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4"
           >
             תכניות לימוד מגוונות המותאמות לכל שלב בחיים - מישיבה גבוהה ועד כולל אברכים,
             עם דגש על עומק, רוחב ואיכות בלימוד התורה
@@ -126,21 +126,21 @@ export default function StudiesPage() {
 
       {/* Programs Section */}
       <section className="section-padding">
-        <div className="container">
+        <div className="container px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">תכניות הלימודים שלנו</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4">תכניות הלימודים שלנו</h2>
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
               בחר את התכנית המתאימה לך ולשלב בחייך
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {programs.map((program, index) => (
               <motion.div
                 key={program.title}
@@ -150,33 +150,33 @@ export default function StudiesPage() {
                 viewport={{ once: true }}
               >
                 <Card className="h-full hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className={`w-16 h-16 mb-4 rounded-2xl bg-gradient-to-br ${program.color} p-4`}>
+                  <CardContent className="p-5 sm:p-6">
+                    <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-3 md:mb-4 rounded-xl md:rounded-2xl bg-gradient-to-br ${program.color} p-3 md:p-4`}>
                       <program.icon className="w-full h-full text-white" />
                     </div>
                     
-                    <h3 className="text-2xl font-bold mb-2">{program.title}</h3>
-                    <p className="text-muted-foreground mb-4">{program.description}</p>
+                    <h3 className="text-xl sm:text-2xl font-bold mb-1.5 md:mb-2">{program.title}</h3>
+                    <p className="text-sm sm:text-base text-muted-foreground mb-3 md:mb-4">{program.description}</p>
                     
-                    <div className="mb-4">
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Calendar className="w-4 h-4" />
+                    <div className="mb-3 md:mb-4">
+                      <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
+                        <Calendar className="w-3.5 h-3.5 md:w-4 md:h-4" />
                         <span>{program.duration}</span>
                       </div>
                     </div>
 
-                    <ul className="space-y-2 mb-6">
+                    <ul className="space-y-1.5 md:space-y-2 mb-4 md:mb-6">
                       {program.features.map((feature) => (
-                        <li key={feature} className="flex items-start gap-2 text-sm">
-                          <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                        <li key={feature} className="flex items-start gap-2 text-xs sm:text-sm">
+                          <CheckCircle className="w-3.5 h-3.5 md:w-4 md:h-4 text-green-500 mt-0.5 flex-shrink-0" />
                           <span>{feature}</span>
                         </li>
                       ))}
                     </ul>
 
-                    <Button variant="outline" className="w-full">
+                    <Button variant="outline" className="w-full text-sm sm:text-base">
                       <span>למידע נוסף</span>
-                      <ArrowLeft className="w-4 h-4 mr-2 rtl:rotate-180" />
+                      <ArrowLeft className="w-3.5 h-3.5 md:w-4 md:h-4 mr-2 rtl:rotate-180" />
                     </Button>
                   </CardContent>
                 </Card>
@@ -232,7 +232,7 @@ export default function StudiesPage() {
 
       {/* CTA Section */}
       <section className="section-padding">
-        <div className="container">
+        <div className="container px-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -241,21 +241,21 @@ export default function StudiesPage() {
           >
             <Card className="relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600" />
-              <CardContent className="relative z-10 p-12 text-center text-white">
-                <h3 className="text-3xl md:text-4xl font-bold mb-4">
+              <CardContent className="relative z-10 p-6 sm:p-8 md:p-12 text-center text-white">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4">
                   מעוניין להצטרף ללימודים?
                 </h3>
-                <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+                <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 opacity-90 max-w-2xl mx-auto px-4">
                   צור איתנו קשר לקבלת מידע נוסף על תהליך ההרשמה והקבלה
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button variant="secondary" size="lg" asChild>
+                <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+                  <Button variant="secondary" size="lg" asChild className="w-full sm:w-auto">
                     <Link href="/contact">
                       <span>צור קשר</span>
                       <ArrowLeft className="w-4 h-4 mr-2 rtl:rotate-180" />
                     </Link>
                   </Button>
-                  <Button variant="outline" size="lg" className="bg-white/10 border-white text-white hover:bg-white/20">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto bg-white/10 border-white text-white hover:bg-white/20">
                     <FileText className="w-4 h-4 ml-2" />
                     <span>הורד חוברת מידע</span>
                   </Button>
