@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Home, BookOpen, Users, Calendar, Phone, Heart } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const navItems = [
   { name: "בית", href: "/", icon: Home },
@@ -47,8 +48,15 @@ export function ModernNavbar() {
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center gap-3"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-teal-500 flex items-center justify-center shadow-lg">
-                  <span className="text-white font-bold text-xl">אור</span>
+                <div className="w-12 h-12 relative flex items-center justify-center">
+                  <Image
+                    src="/logo/or_vishua_logo.png"
+                    alt="אור וישועה - ישיבה גבוהה חיפה"
+                    width={48}
+                    height={48}
+                    className="object-contain"
+                    priority
+                  />
                 </div>
                 <div className="hidden md:block">
                   <div className="text-2xl font-bold gradient-text-modern">

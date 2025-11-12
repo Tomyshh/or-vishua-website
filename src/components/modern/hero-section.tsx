@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { gsap } from 'gsap'
 import Tilt from 'react-parallax-tilt'
+import Image from 'next/image'
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -84,22 +85,32 @@ export function HeroSection() {
         style={{ opacity, scale }}
       >
         <div className="max-w-5xl mx-auto">
-          {/* Badge animé */}
+          {/* Logo agrandi sans bulle */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex justify-center mb-8"
+            className="flex justify-center mb-12"
           >
-            <div className="glass px-6 py-3 rounded-full inline-flex items-center gap-2">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
-              </span>
-              <span className="text-sm font-medium bg-gradient-to-r from-cyan-600 to-teal-600 bg-clip-text text-transparent">
-                ברוכים הבאים לישיבת אור וישועה
-              </span>
-            </div>
+            <motion.div 
+              className="w-32 h-32 md:w-40 md:h-40 relative"
+              animate={{ 
+                scale: [1, 1.05, 1]
+              }}
+              transition={{ 
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <Image
+                src="/logo/or_vishua_logo.png"
+                alt="אור וישועה"
+                fill
+                className="object-contain drop-shadow-2xl"
+                priority
+              />
+            </motion.div>
           </motion.div>
 
           {/* Titre avec animation split */}

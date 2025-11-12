@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { BookOpen, Users, Heart, GraduationCap, Globe, Sparkles } from 'lucide-react'
 import Tilt from 'react-parallax-tilt'
+import Image from 'next/image'
 
 const features = [
   {
@@ -12,6 +13,7 @@ const features = [
     description: "תכנית לימודים מקיפה המשלבת גמרא, הלכה, מחשבת ישראל ופילוסופיה יהודית",
     color: "from-cyan-500 to-blue-500",
     delay: 0,
+    image: "/images/havrouta-yioun.jpg",
   },
   {
     icon: Users,
@@ -19,6 +21,7 @@ const features = [
     description: "סביבה משפחתית המעודדת צמיחה אישית ורוחנית בתוך קהילה תוססת ומגוונת",
     color: "from-teal-500 to-green-500",
     delay: 0.1,
+    image: "/images/kehila.jpg",
   },
   {
     icon: Heart,
@@ -26,6 +29,7 @@ const features = [
     description: "כל תלמיד זוכה לליווי אישי ממרצי הישיבה להתפתחות מיטבית ומותאמת אישית",
     color: "from-amber-500 to-orange-500",
     delay: 0.2,
+    image: "/images/harav.jpg",
   },
   {
     icon: GraduationCap,
@@ -33,6 +37,7 @@ const features = [
     description: "הכשרה מקצועית לרבנות, חינוך והוראה לצד פיתוח כישורי חיים ומנהיגות",
     color: "from-purple-500 to-pink-500",
     delay: 0.3,
+    image: "/images/havrouta.jpg",
   },
   {
     icon: Globe,
@@ -40,6 +45,7 @@ const features = [
     description: "גישור בין עולם התורה לחיים המודרניים בגישה פתוחה, מכבדת וחכמה",
     color: "from-indigo-500 to-purple-500",
     delay: 0.4,
+    image: "/images/modern.jpg",
   },
   {
     icon: Sparkles,
@@ -47,6 +53,7 @@ const features = [
     description: "שאיפה למצוינות בלימוד התורה תוך שמירה על רמה אקדמית גבוהה ומחויבות",
     color: "from-rose-500 to-red-500",
     delay: 0.5,
+    image: "/images/arme-livouy.jpg",
   },
 ]
 
@@ -99,8 +106,20 @@ export function FeaturesSection() {
             >
               <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.02}>
                 <div className="group h-full p-8 rounded-3xl glass transition-all duration-500 hover:shadow-2xl relative overflow-hidden hover:border-cyan-300">
-                  {/* Gradient Overlay on Hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl`} />
+                  {/* Background Image avec overlay */}
+                  <div className="absolute inset-0 overflow-hidden rounded-3xl">
+                    <Image
+                      src={feature.image}
+                      alt={feature.title}
+                      fill
+                      className="object-cover transition-all duration-700 group-hover:scale-110"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    {/* Overlay blanc avec opacité */}
+                    <div className="absolute inset-0 bg-white/85 group-hover:bg-white/75 transition-all duration-500" />
+                    {/* Gradient overlay coloré */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-10 group-hover:opacity-20 transition-opacity duration-500`} />
+                  </div>
                   
                   {/* Icon */}
                   <div className={`relative z-10 w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} p-4 mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-xl`}>
@@ -112,7 +131,7 @@ export function FeaturesSection() {
                     {feature.title}
                   </h3>
                   
-                  <p className="relative z-10 text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                  <p className="relative z-10 text-gray-700 leading-relaxed group-hover:text-gray-800 transition-colors duration-300 font-medium">
                     {feature.description}
                   </p>
 
