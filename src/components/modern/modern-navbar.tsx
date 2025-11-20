@@ -2,20 +2,23 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Home, BookOpen, Users, Calendar, Phone, Heart } from 'lucide-react'
+import { Menu, X, Home, BookOpen, Users, Calendar, Phone, Heart, Newspaper } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 
 const navItems = [
   { name: "בית", href: "/", icon: Home },
   { name: "אודות", href: "/about", icon: Users },
   { name: "לימודים", href: "/studies", icon: BookOpen },
   { name: "קהילה", href: "/community", icon: Heart },
+  { name: "חדשות", href: "/news", icon: Newspaper },
   { name: "לוח זמנים", href: "/calendar", icon: Calendar },
   { name: "צור קשר", href: "/contact", icon: Phone },
 ]
 
 export function ModernNavbar() {
+  const pathname = usePathname()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -33,11 +36,10 @@ export function ModernNavbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled 
-            ? 'glass shadow-lg py-2 md:py-3' 
-            : 'bg-transparent py-4 md:py-6'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+          ? 'glass shadow-lg py-2 md:py-3'
+          : 'bg-transparent py-4 md:py-6'
+          }`}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
@@ -69,19 +71,32 @@ export function ModernNavbar() {
 
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center gap-2">
-              {navItems.map((item, index) => (
-                <Link 
-                  key={item.name}
-                  href={item.href}
-                  className="group relative px-4 py-2 rounded-xl hover:bg-white/10 transition-all duration-300"
-                >
-                  <div className="flex items-center gap-2 text-gray-700 group-hover:text-cyan-600 transition-colors">
-                    <item.icon className="w-4 h-4" />
-                    <span className="font-medium">{item.name}</span>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 to-teal-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-right" />
-                </Link>
-              ))}
+              {navItems.map((item, index) => {
+                const isActive = pathname === item.href
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="group relative px-4 py-2 rounded-xl transition-all duration-300"
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="active-tab"
+                        className="absolute inset-0 bg-cyan-50/80 rounded-xl"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    <div className={`relative z-10 flex items-center gap-2 transition-colors ${isActive ? 'text-cyan-700 font-bold' : 'text-gray-700 group-hover:text-cyan-600'
+                      }`}>
+                      <item.icon className={`w-4 h-4 ${isActive ? 'text-cyan-600' : ''}`} />
+                      <span className="font-medium">{item.name}</span>
+                    </div>
+                    {!isActive && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 to-teal-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-right" />
+                    )}
+                  </Link>
+                )
+              })}
             </div>
 
             {/* CTA Buttons */}
@@ -159,7 +174,7 @@ export function ModernNavbar() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
                     >
-                      <Link 
+                      <Link
                         href={item.href}
                         onClick={() => setIsMobileMenuOpen(false)}
                         className="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-white/60 dark:bg-gray-700/60 hover:bg-gradient-to-r hover:from-cyan-100 hover:to-teal-100 dark:hover:from-cyan-900/40 dark:hover:to-teal-900/40 active:scale-95 transition-all duration-300 cursor-pointer group block shadow-sm hover:shadow-md"

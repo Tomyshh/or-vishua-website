@@ -6,24 +6,26 @@ import { gsap } from 'gsap'
 import Tilt from 'react-parallax-tilt'
 import Image from 'next/image'
 
+import { NewsSection } from './news-section'
+
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   })
-  
+
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9])
-  
+
   const smoothY = useSpring(y, { stiffness: 100, damping: 30, restDelta: 0.001 })
 
   useEffect(() => {
     // Animation d'entrée GSAP pour le texte
     const ctx = gsap.context(() => {
       const tl = gsap.timeline()
-      
+
       tl.from('.hero-title-line', {
         yPercent: 100,
         opacity: 0,
@@ -31,35 +33,35 @@ export function HeroSection() {
         ease: 'power4.out',
         stagger: 0.1,
       })
-      .from('.hero-subtitle', {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-      }, '-=0.5')
-      .from('.hero-cta', {
-        y: 20,
-        opacity: 0,
-        duration: 0.6,
-        ease: 'power2.out',
-        stagger: 0.1,
-      }, '-=0.4')
-      .from('.hero-stat', {
-        scale: 0.8,
-        opacity: 0,
-        duration: 0.5,
-        ease: 'back.out(1.7)',
-        stagger: 0.1,
-      }, '-=0.3')
+        .from('.hero-subtitle', {
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+        }, '-=0.5')
+        .from('.hero-cta', {
+          y: 20,
+          opacity: 0,
+          duration: 0.6,
+          ease: 'power2.out',
+          stagger: 0.1,
+        }, '-=0.4')
+        .from('.hero-stat', {
+          scale: 0.8,
+          opacity: 0,
+          duration: 0.5,
+          ease: 'back.out(1.7)',
+          stagger: 0.1,
+        }, '-=0.3')
     }, containerRef)
 
     return () => ctx.revert()
   }, [])
 
   return (
-    <section 
+    <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 md:pt-40 pb-16 md:pb-32 px-4"
+      className="relative min-h-[60vh] flex flex-col items-center justify-start overflow-hidden pt-16 md:pt-20 pb-2 px-4"
     >
       {/* Animated Background Blobs */}
       <div className="absolute inset-0 overflow-hidden">
@@ -80,24 +82,24 @@ export function HeroSection() {
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white/80" />
 
-      <motion.div 
+      <motion.div
         className="container relative z-10"
         style={{ opacity, scale }}
       >
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-5xl mx-auto w-full">
           {/* Logo agrandi sans bulle */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex justify-center mb-8 md:mb-12"
+            className="flex justify-center mb-2 md:mb-3"
           >
-            <motion.div 
-              className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 relative"
-              animate={{ 
+            <motion.div
+              className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 relative"
+              animate={{
                 scale: [1, 1.05, 1]
               }}
-              transition={{ 
+              transition={{
                 duration: 3,
                 repeat: Infinity,
                 ease: "easeInOut"
@@ -114,7 +116,7 @@ export function HeroSection() {
           </motion.div>
 
           {/* Titre avec animation split */}
-          <div className="text-center mb-6 md:mb-8 overflow-hidden">
+          <div className="text-center mb-1 md:mb-2 overflow-hidden">
             <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
               <div className="overflow-hidden">
                 <div className="hero-title-line">
@@ -132,13 +134,13 @@ export function HeroSection() {
           </div>
 
           {/* Sous-titre */}
-          <p className="hero-subtitle text-base sm:text-lg md:text-xl lg:text-2xl text-center text-gray-600 mb-8 md:mb-12 max-w-3xl mx-auto px-4 leading-relaxed">
-            ישיבת אור וישועה בחיפה - בית מדרש לתורה ולחכמה, המשלב לימוד עיוני עמוק 
+          <p className="hero-subtitle text-sm sm:text-base md:text-lg text-center text-gray-600 mb-2 md:mb-3 max-w-3xl mx-auto px-4 leading-relaxed">
+            ישיבת אור וישועה בחיפה - בית מדרש לתורה ולחכמה, המשלב לימוד עיוני עמוק
             עם רוח של חדשנות ופתיחות לעולם המודרני
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-12 md:mb-16 px-4">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-2 px-4">
             <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.05} className="w-full sm:w-auto">
               <a
                 href="/about"
@@ -163,43 +165,13 @@ export function HeroSection() {
               </button>
             </Tilt>
           </div>
-
-          {/* Stats avec glassmorphism */}
-          <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-3xl mx-auto px-4">
-            {[
-              { number: "500+", label: "תלמידים" },
-              { number: "50+", label: "שנות מסורת" },
-              { number: "30+", label: "רבנים ומרצים" },
-            ].map((stat, index) => (
-              <Tilt key={index} tiltMaxAngleX={15} tiltMaxAngleY={15}>
-                <div className="hero-stat glass rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 text-center hover-3d">
-                  <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold gradient-text-modern mb-1 md:mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-xs sm:text-sm md:text-base text-gray-600">
-                    {stat.label}
-                  </div>
-                </div>
-              </Tilt>
-            ))}
-          </div>
         </div>
       </motion.div>
 
-      {/* Scroll Indicator - Hidden on mobile */}
-      <motion.div
-        className="hidden md:flex absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 0.6, repeat: Infinity, repeatType: "reverse" }}
-      >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-sm text-gray-500">גלול למטה</span>
-          <svg className="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div>
-      </motion.div>
+      {/* News Section Integrated */}
+      <div className="w-full relative z-10">
+        <NewsSection />
+      </div>
     </section>
   )
 }
